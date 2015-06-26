@@ -41,6 +41,7 @@ function loadCampsites() {
 }
 
 function initialize() {
+  console.log("initialize()");
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
@@ -48,13 +49,14 @@ function initialize() {
     center: chicago
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-  overlay.draw = function() {};
-  overlay.setMap(map);
+  // overlay.draw = function() {};
+  // overlay.setMap(map);
   directionsDisplay.setMap(map);
   calcRoute(true);
 }
 
 function newRoute() {
+  console.log("newRoute()");
   clearMarkers();
   waypts.length = 0;
   $("#stops").empty();
@@ -62,7 +64,7 @@ function newRoute() {
 }
 
 function calcRoute(recalcStops) {
-  // console.log("calcRoute");
+  console.log("calcRoute()");
   var start = $("#from").val();
   var end = $("#to").val();
   stops = parseInt($("#days").val()) - 1;
@@ -115,22 +117,22 @@ function addTentMarkerAt(campSite) {
 
   google.maps.event.addListener(marker, 'mouseover', function(e) {
 
-    var point = overlay.getProjection().fromLatLngToDivPixel(e.latLng);
+    // var point = overlay.getProjection().fromLatLngToDivPixel(e.latLng);
 
-    var mapLeft = point.x;
-    var mapTop = point.y;
+    // var mapLeft = point.x;
+    // var mapTop = point.y;
 
     var infoDiv = $("#info");
-    var smartTag = $("#smart-tag");
-    var mapPos = $("#map-canvas").offset();
+    // var smartTag = $("#smart-tag");
+    // var mapPos = $("#map-canvas").offset();
 
-    mapLeft = mapPos.left + mapLeft;
-    mapTop = mapPos.top + mapTop;
+    // mapLeft = mapPos.left + mapLeft;
+    // mapTop = mapPos.top + mapTop;
 
     infoDiv.html(buildInfo(campSite));
-    smartTag.text(campSite.name);
+    // smartTag.text(campSite.name);
 
-    smartTag.css({top: mapTop, left: mapLeft, position:'absolute'});
+    // smartTag.css({top: mapTop, left: mapLeft, position:'absolute'});
   });
 
 //  google.maps.event.addListener(marker, 'mouseout', function() {
